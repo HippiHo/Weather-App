@@ -38,7 +38,7 @@ const App = () => {
   };
 
   const filterForDay = (days) => {
-    return days.filter((day) => day.dt_txt.split(" ")[0] === "2017-02-17");
+    return days.filter((day) => day.dt_txt.split(" ")[0] === "2017-02-18");
   };
 
   useEffect(() => {
