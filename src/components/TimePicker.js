@@ -1,30 +1,45 @@
 import styled from "styled-components";
 import Weather from "./Weather.js";
+import { formatTempToCelsius, formatToHours } from "../helpers";
 
 const ListWrapper = styled.div`
-  height: 200px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  font-size: 1rem;
+  padding: 0px 24px;
+  position: absolute;
+  top: 50vh;
+  width: 100%;
+  overflow: scroll;
+  height: 50vh;
+
+  @media only screen and (min-width: 992px) {
+    font-size: 2rem;
+  }
 `;
 
-const TimePicker = ({ dailyWeather }) => (
-  <ListWrapper>
-    {dailyWeather.map((hour, index) => {
-      const imageChoice = hour.weather[0].main;
-      const time = new Date(hour.dt_txt).getHours();
-      const temperature = hour.main.temp;
-      return (
-        <Weather
-          key={index}
-          imageChoice={imageChoice}
-          time={time}
-          temperature={temperature}
-        />
-      );
-    })}
-  </ListWrapper>
-);
+const TimePicker = ({ dailyWeather, setSelectedId }) => {
+  return (
+    <ListWrapper>
+      {dailyWeather.map((hour, index) => {
+        const imageChoice = hour.weather[0].main;
+        const time = formatToHours(hour.dt_txt);
+        const temperature = formatTempToCelsius(hour.main.temp);
+        const id = hour.dt;
+        return (
+          <Weather
+            key={index}
+            imageChoice={imageChoice}
+            time={time}
+            temperature={temperature}
+            id={id}
+            setSelectedId={setSelectedId}
+          />
+        );
+      })}
+    </ListWrapper>
+  );
+};
 
 export default TimePicker;

@@ -20,6 +20,11 @@ body {
   font-family: "Roboto", sans-serif;
   margin: 0;
 }
+
+.active.active {
+  background-color: #41456b;
+}
+
 /**
  * Render the `main` element consistently in IE.
  */
