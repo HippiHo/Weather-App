@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "./Image.js";
 import sun from "../assets/weather-sun.svg";
-// import cloud from "../assets/weather-cloud.svg";
+import cloud from "../assets/weather-cloud.svg";
 
 const WeatherWrapper = styled.div`
   height: 200px;
@@ -19,11 +19,15 @@ const Temperature = styled.div`
   font-weight: bold;
 `;
 
-const Weather = () => (
+const Weather = ({ time, imageChoice, temperature }) => (
   <WeatherWrapper>
-    <Time>Time</Time>
-    <Image source={sun} />
-    <Temperature>Temperature</Temperature>
+    <Time>{time}</Time>
+    {imageChoice === "Clear" ? (
+      <Image source={sun} />
+    ) : (
+      <Image source={cloud} />
+    )}
+    <Temperature>{temperature}</Temperature>
   </WeatherWrapper>
 );
 

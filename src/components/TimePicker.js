@@ -9,11 +9,21 @@ const ListWrapper = styled.div`
   justify-content: space-around;
 `;
 
-const TimePicker = () => (
+const TimePicker = ({ dailyWeather }) => (
   <ListWrapper>
-    <Weather />
-    <Weather />
-    <Weather />
+    {dailyWeather.map((hour, index) => {
+      const imageChoice = hour.weather[0].main;
+      const time = new Date(hour.dt_txt).getHours();
+      const temperature = hour.main.temp;
+      return (
+        <Weather
+          key={index}
+          imageChoice={imageChoice}
+          time={time}
+          temperature={temperature}
+        />
+      );
+    })}
   </ListWrapper>
 );
 

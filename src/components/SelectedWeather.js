@@ -11,12 +11,44 @@ const SelectedWeatherWrapper = styled.div`
   justify-content: space-around;
 `;
 
-const SelectedWeather = () => (
-  <SelectedWeatherWrapper>
-    <Image source={sun} />
-    <Image source={cloud} />
-    <p>Selected</p>
-  </SelectedWeatherWrapper>
-);
+const SelectedWeather = ({ city, selectedHour }) => {
+  let weatherDescription = "";
+  let tempObject = {};
+  let minMaxTemp = "";
+  let currentTemp = "";
+  let date = "";
+  let convertedDate = "";
+
+  if (
+    selectedHour &&
+    selectedHour.weather &&
+    selectedHour.weather.length !== 0
+  ) {
+    weatherDescription = selectedHour.weather[0].main;
+    tempObject = selectedHour.main;
+    currentTemp = tempObject.temp;
+    minMaxTemp = `${tempObject.temp_max}°/ ${tempObject.temp_min}°`;
+    date = new Date(selectedHour.dt_txt);
+    convertedDate = date.getDate();
+  }
+  return (
+    <SelectedWeatherWrapper>
+      <div>
+        <div>{weatherDescription}</div>
+        <div>{minMaxTemp}</div>
+        <div>{city}</div>
+      </div>
+      <div>
+        {weatherDescription === "Clear" ? (
+          <Image source={sun} />
+        ) : (
+          <Image source={cloud} />
+        )}
+        <div>{currentTemp}</div>
+        <div>{convertedDate}</div>
+      </div>
+    </SelectedWeatherWrapper>
+  );
+};
 
 export default SelectedWeather;
