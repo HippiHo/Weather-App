@@ -1,6 +1,12 @@
-# Todos
+# About
+
+This application fetches and visualizes remote data from OpenWeatherMap 5 days/3 hours filtered to the weather for a single day. The top shows the selected hour starting with the first item in the list.
+
+## Todos
 
 - The CORS issues of the API are currently solved by the Chrome plugin 'Allow CORS: Access-Control-Allow-Origin' for development and need to be fixed by making my proxy server work
+- The design I was following shows the weather for every hour of the day. Since I was getting weather data for every 3 hours the list was kinda short. If the list was longer it would need a better scroll effect for big screens.
+- As another improvement I could initially display the hour that is closest to my current hour at the top
 
 # Getting Started with Create React App
 
