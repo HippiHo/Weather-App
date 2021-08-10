@@ -9,32 +9,40 @@ const AppWrapper = styled.div`
   width: 100vw;
 `;
 
+const IntroMessage = styled.div`
+  font-size: 2rem;
+  padding: 1rem;
+  text-align: center;
+`;
+
 const App = () => {
   const [city, setCity] = useState("");
   const [dailyWeather, setDailyWeather] = useState([]);
-  const [selectedId, setSelectedId] = useState(1487246400);
+  const [selectedId, setSelectedId] = useState(null);
   const [selectedHour, setSelectedHour] = useState({});
+  const [intoMessage, setIntroMessage] = useState(["Loading..."]);
 
   useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(
+          `https://samples.openweathermap.org/data/2.5/forecast?q=M%C3%BCnchen,DE&appid=b6907d289e10d714a6e88b30761fae22`
+        );
+        extractData(response.data);
+      } catch (err) {
+        console.error(err);
+        setIntroMessage(["404", "We are sorry, there is no data coming..."]);
+      }
+    };
+
     getData();
   }, []);
-
-  const getData = async () => {
-    try {
-      const response = await axios.get(
-        `https://samples.openweathermap.org/data/2.5/forecast?q=M%C3%BCnchen,DE&appid=b6907d289e10d714a6e88b30761fae22`
-      );
-      extractData(response.data);
-      console.log("response", response);
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   const extractData = (rawData) => {
     setCity(rawData.city.name);
     setDailyWeather(filterForDay(rawData.list));
-    setSelectedHour(selectedId);
+    setSelectedId(filterForDay(rawData.list)[0].dt);
+    setSelectedHour(rawData.list[0]);
   };
 
   const filterForDay = (days) => {
@@ -47,12 +55,21 @@ const App = () => {
 
   return (
     <AppWrapper>
-      <SelectedWeather city={city} selectedHour={selectedHour} />
-      <TimePicker
-        dailyWeather={dailyWeather}
-        setSelectedId={setSelectedId}
-        selectedId={selectedId}
-      />
+      {selectedId ? (
+        <>
+          <SelectedWeather city={city} selectedHour={selectedHour} />
+          <TimePicker
+            dailyWeather={dailyWeather}
+            setSelectedId={setSelectedId}
+            selectedId={selectedId}
+          />
+        </>
+      ) : (
+        <IntroMessage>
+          <h1>{intoMessage[0]}</h1>
+          {intoMessage[1]}
+        </IntroMessage>
+      )}
     </AppWrapper>
   );
 };
