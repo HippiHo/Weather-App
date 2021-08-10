@@ -1,6 +1,6 @@
-const express = require("express");
-const proxy = require("http-proxy-middleware");
-const cors = require("cors");
+import express from "express";
+import proxy from "http-proxy-middleware";
+import cors from "cors";
 const app = express();
 
 app.use(cors());
