@@ -1,3 +1,7 @@
+# Todos
+
+- The CORS issues of the API are currently solved by the Chrome plugin 'Allow CORS: Access-Control-Allow-Origin' for development and need to be fixed by making my proxy server work
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
