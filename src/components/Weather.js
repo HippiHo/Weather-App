@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "./Image.js";
 import sun from "../assets/weather-sun.svg";
@@ -37,15 +36,20 @@ const Temperature = styled.div`
   }
 `;
 
-const Weather = ({ time, imageChoice, temperature, setSelectedId, id }) => {
-  const [isActive, setIsActive] = useState(false);
+const Weather = ({
+  time,
+  imageChoice,
+  temperature,
+  setSelectedId,
+  selectedId,
+  id,
+}) => {
   return (
     <WeatherWrapper
       onClick={() => {
         setSelectedId(id);
-        setIsActive(!isActive);
       }}
-      className={isActive && "active"}
+      className={selectedId && selectedId === id ? "active" : ""}
     >
       <Time>{time}:00</Time>
       {imageChoice === "Clear" ? (

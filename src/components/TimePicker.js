@@ -19,7 +19,7 @@ const ListWrapper = styled.div`
   }
 `;
 
-const TimePicker = ({ dailyWeather, setSelectedId }) => {
+const TimePicker = ({ dailyWeather, setSelectedId, selectedId }) => {
   return (
     <ListWrapper>
       {dailyWeather.map((hour, index) => {
@@ -35,6 +35,7 @@ const TimePicker = ({ dailyWeather, setSelectedId }) => {
             temperature={temperature}
             id={id}
             setSelectedId={setSelectedId}
+            selectedId={selectedId}
           />
         );
       })}

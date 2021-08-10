@@ -48,7 +48,11 @@ const App = () => {
   return (
     <AppWrapper>
       <SelectedWeather city={city} selectedHour={selectedHour} />
-      <TimePicker dailyWeather={dailyWeather} setSelectedId={setSelectedId} />
+      <TimePicker
+        dailyWeather={dailyWeather}
+        setSelectedId={setSelectedId}
+        selectedId={selectedId}
+      />
     </AppWrapper>
   );
 };
