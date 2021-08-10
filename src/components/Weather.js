@@ -4,35 +4,43 @@ import sun from "../assets/weather-sun.svg";
 import cloud from "../assets/weather-cloud.svg";
 
 const WeatherWrapper = styled.div`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 0px;
-
-  position: relative;
-  width: 212px;
-  height: 400px;
-
+  min-width: 60px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-right: 10px;
   :hover {
     background-color: #3b3f69;
+  }
+
+  @media only screen and (min-width: 481px) {
+    min-width: 80px;
+  }
+
+  /* Small Devices, Tablets */
+  @media only screen and (min-width: 768px) {
+    min-width: 100px;
   }
 `;
 
 const Time = styled.div`
   color: #a8aabd;
-
-  /* Small Devices, Tablets */
-  @media only screen and (min-width: 768px) {
-    font-size: 2rem;
-  }
 `;
 
 const Temperature = styled.div`
   font-weight: bold;
+  font-size: 1rem;
+
+  @media only screen and (min-width: 481px) {
+    font-size: 1.5rem;
+  }
 
   /* Small Devices, Tablets */
   @media only screen and (min-width: 768px) {
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
 `;
 

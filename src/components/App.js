@@ -12,7 +12,8 @@ const AppWrapper = styled.div`
 const IntroMessage = styled.div`
   font-size: 2rem;
   padding: 1rem;
-  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
 `;
 
 const App = () => {

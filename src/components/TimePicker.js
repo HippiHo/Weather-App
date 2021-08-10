@@ -6,16 +6,19 @@ const ListWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 1rem;
-  padding: 0px 24px;
-  position: absolute;
-  top: 50vh;
-  width: 100%;
+  font-size: 0.8rem;
+  margin: 0 auto;
+  max-width: 1000px;
   overflow: scroll;
-  height: 50vh;
 
-  @media only screen and (min-width: 992px) {
-    font-size: 2rem;
+  @media only screen and (min-width: 481px) {
+    font-size: 1rem;
+  }
+
+  /* Small Devices, Tablets */
+  @media only screen and (min-width: 768px) {
+    font-size: 1.2rem;
+    overflow: visible;
   }
 `;
 
